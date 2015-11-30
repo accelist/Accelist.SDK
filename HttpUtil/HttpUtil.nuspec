@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>HttpUtil</id>
+    <version>0.1.0</version>
+    <title>HttpUtil</title>
+    <authors>Ryan Elian</authors>
+    <owners>Ryan Elian</owners>
+    <projectUrl>https://github.com/ryanelian/HttpUtil</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET HTTP helper classes</description>
+    <releaseNotes>HttpResponseExceptionFactory and JsonContentFactory</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>C# HTTP Utility ASP.NET JsonContent HttpResponseException</tags>
+  </metadata>
+</package>
