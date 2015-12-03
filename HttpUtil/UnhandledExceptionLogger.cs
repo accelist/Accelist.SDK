@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 
-namespace TAM.Storage.WebService
+namespace HttpUtil
 {
     public class UnhandledExceptionLogger : ExceptionLogger
     {
