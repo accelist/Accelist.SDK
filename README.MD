@@ -1,6 +1,6 @@
 # HttpUtil
 
-> .NET HTTP helper classes
+> ASP.NET HTTP helper classes
 
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/ryanelian/HttpUtil)](https://ci.appveyor.com/project/RyanElian/httputil)
 
@@ -31,9 +31,10 @@ Content-Length:
 Creates new HttpContent with provided payload, serialized as JSON string and set to "application/json" content type.
 
 ```csharp
-var client = new HttpClient();
 var payload = new { foo = "bar" };
 var content = JsonContentFactory.CreateNew(payload);
+
+var client = new HttpClient();
 var request = client.PostAsync("https://www.google.com", content);
 ```
 
@@ -41,13 +42,11 @@ var request = client.PostAsync("https://www.google.com", content);
 
 Grabs an exception that triggers in an ASP.NET Web API controller, ignores HttpResponseException.
 
-Compiles exception message and stack trace into a string. 
-
-If exception is an AggregateException, all inner exceptions are flattened and then also compiled.
+Compiles exception message and stack trace into a string. If exception is an AggregateException, all inner exceptions are flattened and then also compiled.
 
 Compiles request context into string, which includes method, URI, header and body.
 
-Pass the compiled exception and request string to the log handler.
+After that, passes the compiled exception and request string to the log handler.
 
 ```csharp
 //at WebApiConfig.Register(HttpConfiguration config)

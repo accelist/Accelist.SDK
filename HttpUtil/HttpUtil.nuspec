@@ -8,7 +8,7 @@
     <owners>Ryan Elian</owners>
     <projectUrl>https://github.com/ryanelian/HttpUtil</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>.NET HTTP helper classes</description>
+    <description>ASP.NET HTTP helper classes</description>
     <releaseNotes>UnhandledExceptionLogger</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>C# HTTP Utility ASP.NET Web API JsonContent HttpResponseException UnhandledExceptionLogger</tags>

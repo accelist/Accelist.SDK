@@ -30,7 +30,7 @@ namespace TAM.Storage.WebService
         /// Compiles exception message and stack trace into a string. 
         /// If exception is an AggregateException, all inner exceptions are flattened and then also compiled.
         /// Compiles request context into string, which includes method, URI, header and body.
-        /// Pass the compiled exception and request string to the log handler.
+        /// After that, passes the compiled exception and request string to the log handler.
         /// </summary>
         /// <param name="context"></param>
         public override void Log(ExceptionLoggerContext context)
