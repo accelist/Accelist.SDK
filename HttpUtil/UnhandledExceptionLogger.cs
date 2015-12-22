@@ -8,6 +8,9 @@ using System.Web.Http.ExceptionHandling;
 
 namespace HttpUtil
 {
+    /// <summary>
+    /// Provides unhandled exception logger that can be attached to ASP.NET Web API configuration. 
+    /// </summary>
     public class UnhandledExceptionLogger : ExceptionLogger
     {
         /// <summary>
@@ -16,7 +19,7 @@ namespace HttpUtil
         public readonly Action<string, string> LogHandler;
 
         /// <summary>
-        /// Grabs an exception that triggers in an ASP.NET Web API controller. 
+        /// Creates a new instance of UnhandledExceptionLogger.
         /// Accepts action with two string parameters, which are exception string and request context string respectively.
         /// </summary>
         /// <param name="logHandler"></param>
