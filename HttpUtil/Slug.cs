@@ -15,7 +15,6 @@ namespace HttpUtil
         /// <summary>
         /// Creates a slug from one or more string parameters.
         /// </summary>
-        /// <param name="toLower"></param>
         /// <param name="values"></param>
         /// <returns></returns>
         public static string Create(params string[] values)
@@ -31,7 +30,6 @@ namespace HttpUtil
         /// http://stackoverflow.com/questions/25259/how-do-you-include-a-webpage-title-as-part-of-a-webpage-url/25486#25486
         /// http://stackoverflow.com/questions/3769457/how-can-i-remove-accents-on-a-string
         /// </summary>
-        /// <param name="toLower"></param>
         /// <param name="value"></param>
         /// <returns></returns>
         public static string Create(string value)
