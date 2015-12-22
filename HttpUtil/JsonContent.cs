@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace HttpUtil
 {
     /// <summary>
-    /// Provides HTTP content based on an JSON-serialized object.
+    /// Provides HTTP content based on a JSON-serialized object.
     /// </summary>
     public class JsonContent : StringContent
     {
