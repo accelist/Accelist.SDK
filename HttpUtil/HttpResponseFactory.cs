@@ -23,10 +23,14 @@ namespace HttpUtil
         /// <returns></returns>
         public static HttpResponseMessage CreateNewMessage(HttpStatusCode code, object data)
         {
-            return new HttpResponseMessage(code)
+            var response = new HttpResponseMessage(code);
+
+            if (data != null)
             {
-                Content = new JsonContent(data)
-            };
+                response.Content = new JsonContent(data);
+            }
+
+            return response;
         }
 
         /// <summary>
@@ -38,6 +42,21 @@ namespace HttpUtil
         public static HttpResponseException CreateNewException(HttpStatusCode code, object data)
         {
             return new HttpResponseException(CreateNewMessage(code, data));
+        }
+
+        /// <summary>
+        /// If condition resolves to TRUE, throws new HTTP response exception using provided HTTP status code and JSON-serialized data.
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="code"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static void AssertThrow(this bool condition, HttpStatusCode code, object data = null)
+        {
+            if (condition)
+            {
+                throw CreateNewException(code, data);
+            }
         }
     }
 }
