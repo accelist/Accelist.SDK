@@ -20,8 +20,6 @@ namespace HttpUtil
         /// <returns></returns>
         public static string Generate()
         {
-            var template = "<machineKey validationKey=\"{0}\" decryptionKey=\"{2}\"/>";
-
             using (var rijndael = new RijndaelManaged())
             using (var hmacsha256 = new HMACSHA256())
             {
@@ -29,7 +27,7 @@ namespace HttpUtil
                 hmacsha256.Initialize();
                 var decryptionKey = new SoapHexBinary(rijndael.Key);
                 var validationKey = new SoapHexBinary(hmacsha256.Key);
-                return string.Format(template, validationKey, decryptionKey);
+                return $"<machineKey validationKey=\"{validationKey}\" decryptionKey=\"{decryptionKey}\"/>";
             }
         }
     }
