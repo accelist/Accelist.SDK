@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HttpConfigurationExtensions.cs" />
-    <Compile Include="HttpResponseFactory.cs" />
+    <Compile Include="JsonResponse.cs" />
     <Compile Include="JsonContent.cs" />
     <Compile Include="MachineKeyGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

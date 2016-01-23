@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>HttpUtil</id>
-    <version>0.3.2</version>
+    <version>0.3.3</version>
     <title>HttpUtil</title>
     <authors>Ryan Elian</authors>
     <owners>Ryan Elian</owners>
