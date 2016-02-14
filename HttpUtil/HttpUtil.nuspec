@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>HttpUtil</id>
-    <version>0.3.3</version>
+    <version>0.4.0</version>
     <title>HttpUtil</title>
     <authors>Ryan Elian</authors>
     <owners>Ryan Elian</owners>
@@ -10,6 +10,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ASP.NET HTTP helper classes</description>
     <copyright>Copyright 2015</copyright>
-    <tags>C# HTTP Helper Utility ASP.NET Web API JsonContent HttpResponseException Global Unhandled Exception Logger Plain Text Formatter Machine Key Generator Slug SEO URL Friendly</tags>
+    <tags>C# HTTP Helper Utility ASP.NET Web API JsonContent Json Http Response Exception Global Unhandled Exception Logger Plain Text Formatter Machine Key Generator Slug SEO URL Friendly</tags>
   </metadata>
 </package>

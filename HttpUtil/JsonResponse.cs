@@ -21,7 +21,7 @@ namespace HttpUtil
         /// <param name="code"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static HttpResponseMessage CreateNew(HttpStatusCode code, object data = null)
+        public static HttpResponseMessage CreateNew(HttpStatusCode code, object data)
         {
             var response = new HttpResponseMessage(code);
             response.Content = new JsonContent(data);
