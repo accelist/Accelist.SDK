@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace HttpUtil
+namespace System.Net.Http
 {
     /// <summary>
     /// Contains extension methods for HttpRequestMessage object.
     /// </summary>
-    public static class HttpRequestMessageExtensions
+    public static class HttpUtilRequestMessageExtensions
     {
         /// <summary>
         /// Throws a HttpResponseException using input status code and message.
