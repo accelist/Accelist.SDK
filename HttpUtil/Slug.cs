@@ -71,8 +71,7 @@ namespace HttpUtil
                 }
                 else
                 {
-                    string swap = ConvertEdgeCases(c);
-
+                    var swap = ConvertEdgeCases(c);
                     if (swap != null)
                     {
                         if (prevDash)
