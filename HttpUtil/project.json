@@ -1,9 +1,21 @@
 {
+  "packOptions": {
+    "summary": "A collection of helper classes for greatly assisting an ASP.NET Core MVC development.",
+    "tags": [ "JsonContent", "GuestAttribute", "Secured Headers", "Slug", "Remote HTTPS", "API Exception", "API Telemetry", "JOSE Newtonsoft Mapper" ],
+    "owners": [ "ryanelian" ],
+    "projectUrl": "https://github.com/ryanelian/HttpUtil",
+    "licenseUrl": "https://opensource.org/licenses/MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ryanelian/HttpUtil"
+    }
+  },
   "title": "HttpUtil",
+  "authors": [ "Ryan Elian" ],
   "copyright": "Ryan Elian",
   "description": "A collection of helper classes for greatly assisting an ASP.NET Core MVC development.",
   "language": "en-US",
-  "version": "0.5.1-*",
+  "version": "0.5.2-*",
   "dependencies": {
     "Newtonsoft.Json": "9.0.1",
     "jose-jwt": "2.1.0",

@@ -16,7 +16,7 @@ namespace HttpUtil
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string Create(string value)
+        public static string Create(string value, int maxLength = 80)
         {
             // References:
             // http://stackoverflow.com/questions/25259/how-does-stack-overflow-generate-its-seo-friendly-urls/6740497#6740497
@@ -24,9 +24,11 @@ namespace HttpUtil
             // http://meta.stackexchange.com/questions/7435/non-us-ascii-characters-dropped-from-full-profile-url/7696#7696
             // http://stackoverflow.com/questions/25259/how-do-you-include-a-webpage-title-as-part-of-a-webpage-url/25486#25486
             // http://stackoverflow.com/questions/3769457/how-can-i-remove-accents-on-a-string
-            
-            if (value == null)
-                return "";
+
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
 
             // Approach that is purely lookup based misses many characters found in examples while researching on Stack Overflow. 
             // To counter this, first peform a normalisation pass (AKA collation mentioned in Meta Stack Overflow question:
@@ -34,13 +36,12 @@ namespace HttpUtil
             // and then ignore any characters outside the acceptable ranges. This works most of the time...
             var normalised = value.Normalize(NormalizationForm.FormKD);
 
-            const int maxlen = 80;
             int len = normalised.Length;
             bool prevDash = false;
             var sb = new StringBuilder(len);
             char c;
 
-            for (int i = 0; i < len; i++)
+            for (var i = 0; i < len; i++)
             {
                 c = normalised[i];
                 if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9'))
@@ -83,7 +84,7 @@ namespace HttpUtil
                     }
                 }
 
-                if (sb.Length == maxlen)
+                if (sb.Length == maxLength)
                 {
                     break;
                 }
