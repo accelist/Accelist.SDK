@@ -15,6 +15,7 @@ namespace HttpUtil
         /// Creates a slug from a string.
         /// </summary>
         /// <param name="value"></param>
+        /// <param name="maxLength"></param>
         /// <returns></returns>
         public static string Create(string value, int maxLength = 80)
         {
