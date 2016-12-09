@@ -8,32 +8,23 @@ namespace HttpUtil
 {
     /// <summary>
     /// Provides helper methods for generating an SEO-friendly URL slugs efficiently.
-    /// http://stackoverflow.com/questions/25259/how-does-stack-overflow-generate-its-seo-friendly-urls/6740497#6740497
     /// </summary>
     public static class Slug
     {
         /// <summary>
-        /// Creates a slug from one or more string parameters.
-        /// </summary>
-        /// <param name="values"></param>
-        /// <returns></returns>
-        public static string Create(params string[] values)
-        {
-            return Create(string.Join("-", values));
-        }
-
-        /// <summary>
-        /// Creates a slug.
-        /// References:
-        /// http://www.unicode.org/reports/tr15/tr15-34.html
-        /// http://meta.stackexchange.com/questions/7435/non-us-ascii-characters-dropped-from-full-profile-url/7696#7696
-        /// http://stackoverflow.com/questions/25259/how-do-you-include-a-webpage-title-as-part-of-a-webpage-url/25486#25486
-        /// http://stackoverflow.com/questions/3769457/how-can-i-remove-accents-on-a-string
+        /// Creates a slug from a string.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         public static string Create(string value)
         {
+            // References:
+            // http://stackoverflow.com/questions/25259/how-does-stack-overflow-generate-its-seo-friendly-urls/6740497#6740497
+            // http://www.unicode.org/reports/tr15/tr15-34.html
+            // http://meta.stackexchange.com/questions/7435/non-us-ascii-characters-dropped-from-full-profile-url/7696#7696
+            // http://stackoverflow.com/questions/25259/how-do-you-include-a-webpage-title-as-part-of-a-webpage-url/25486#25486
+            // http://stackoverflow.com/questions/3769457/how-can-i-remove-accents-on-a-string
+            
             if (value == null)
                 return "";
 
@@ -94,20 +85,23 @@ namespace HttpUtil
                 }
 
                 if (sb.Length == maxlen)
+                {
                     break;
+                }
             }
             return sb.ToString();
         }
 
         /// <summary>
         /// Lookup table for when normalization pass failed because some characters don’t map to a low ASCII value when normalised. 
-        /// The normalisation code was inspired by Jon Hanna’s great post in Stack Overflow question: 
-        /// How can I remove accents on a string? http://stackoverflow.com/questions/3769457
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>
-        static string ConvertEdgeCases(char c)
+        public static string ConvertEdgeCases(char c)
         {
+            /// The normalisation code was inspired by Jon Hanna’s great post in Stack Overflow question: 
+            /// How can I remove accents on a string? http://stackoverflow.com/questions/3769457
+
             string swap = null;
             switch (c)
             {

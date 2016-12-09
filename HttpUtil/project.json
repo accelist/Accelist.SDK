@@ -1,0 +1,32 @@
+{
+  "title": "HttpUtil",
+  "copyright": "Ryan Elian",
+  "description": "A collection of helper classes for greatly assisting an ASP.NET Core MVC development.",
+  "language": "en-US",
+  "version": "0.5.0-*",
+  "dependencies": {
+    "Newtonsoft.Json": "9.0.1",
+    "jose-jwt": "2.1.0",
+    "Microsoft.AspNetCore.Mvc.Core": "1.1.0",
+    "Microsoft.ApplicationInsights": "2.2.0-beta4",
+    "Microsoft.AspNetCore.Http.Abstractions": "1.1.0"
+  },
+  "frameworks": {
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0"
+      }
+    },
+    "netstandard1.6": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.1",
+        "System.Globalization.Extensions": "4.3.0"
+      }
+    }
+  },
+  "buildOptions": {
+    "optimize": true,
+    "xmlDoc": true
+  }
+}
