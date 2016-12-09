@@ -99,8 +99,8 @@ namespace HttpUtil
         /// <returns></returns>
         public static string ConvertEdgeCases(char c)
         {
-            /// The normalisation code was inspired by Jon Hanna’s great post in Stack Overflow question: 
-            /// How can I remove accents on a string? http://stackoverflow.com/questions/3769457
+            // The normalisation code was inspired by Jon Hanna’s great post in Stack Overflow question: 
+            // How can I remove accents on a string? http://stackoverflow.com/questions/3769457
 
             string swap = null;
             switch (c)
