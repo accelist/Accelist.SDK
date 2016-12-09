@@ -37,6 +37,17 @@ namespace HttpUtil
         }
 
         /// <summary>
+        /// Checks whether current request host is a localhost.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static bool IsLocalhost(this HttpContext context)
+        {
+            var host = context.Request.Host.Host;
+            return (host == "localhost") || (host == "127.0.0.1") || (host == "::1");
+        }
+
+        /// <summary>
         /// Adds secured headers so the site will rank A in accordance to https://securityheaders.io reccomendations.
         /// </summary>
         /// <param name="app"></param>

@@ -18,20 +18,10 @@ namespace HttpUtil
         /// <param name="filterContext"></param>
         protected override void HandleNonHttpsRequest(AuthorizationFilterContext filterContext)
         {
-            if (IsLocalhost(filterContext.HttpContext.Request.Host.Host) == false)
+            if (filterContext.HttpContext.IsLocalhost() == false)
             {
                 base.HandleNonHttpsRequest(filterContext);
             }
-        }
-
-        /// <summary>
-        /// Checks whether current host is a localhost.
-        /// </summary>
-        /// <param name="host"></param>
-        /// <returns></returns>
-        private bool IsLocalhost(string host)
-        {
-            return (host == "localhost") || (host == "127.0.0.1") || (host == "::1");
         }
     }
 }
