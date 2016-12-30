@@ -51,8 +51,9 @@ namespace HttpUtil
         /// Adds secured headers so the site will rank A in accordance to https://securityheaders.io reccomendations.
         /// </summary>
         /// <param name="app"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseSecuredHeaders(this IApplicationBuilder app)
+        public static IApplicationBuilder UseSecuredHeaders(this IApplicationBuilder app, SecuredHeaderOptions options = null)
         {
             return app.Use(async (ctx, next) =>
             {
@@ -64,12 +65,31 @@ namespace HttpUtil
                     ctx.Response.Headers.Add("Strict-Transport-Security", $"max-age={maxAge}");
                 }
 
-                ctx.Response.Headers.Add("Content-Security-Policy", "script-src 'self'");
+                ctx.Response.Headers.Add("Content-Security-Policy", GenerateContentSecurityPolicy(options));
                 ctx.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
                 ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
                 ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
                 await next();
             });
+        }
+
+        /// <summary>
+        /// Attempts to generate content-security-policy using given secured header options.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        private static string GenerateContentSecurityPolicy(SecuredHeaderOptions options)
+        {
+            var hasWhitelist = options?.ContentSecurityPolicyWhitelist?.Any() ?? false;
+
+            var result = "script-src 'self'";
+            if (hasWhitelist == false)
+            {
+                return result;
+            }
+
+            var whitelist = string.Join(" ", options.ContentSecurityPolicyWhitelist);
+            return result + " " + whitelist;
         }
     }
 }
