@@ -15,11 +15,12 @@
   "copyright": "Ryan Elian",
   "description": "A collection of helper classes for greatly assisting an ASP.NET Core MVC development.",
   "language": "en-US",
-  "version": "0.5.2-*",
+  "version": "0.6.0-*",
   "dependencies": {
-    "jose-jwt": "2.1.0",
-    "Microsoft.AspNetCore.Mvc.Core": "1.1.0",
-    "Microsoft.ApplicationInsights.AspNetCore": "1.0.2"
+    "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
+    "jose-jwt": "2.2.0",
+    "Microsoft.AspNetCore.Mvc.Core": "1.1.1",
+    "Microsoft.Extensions.Caching.Abstractions": "1.1.0"
   },
   "frameworks": {
     "net451": {

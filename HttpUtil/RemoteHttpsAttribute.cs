@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Filters;
+using HttpUtil;
 
-namespace HttpUtil
+namespace Microsoft.AspNetCore.Mvc
 {
     /// <summary>
     /// This filter is designed to be a global filter added to MVC Core option for handling non-HTTPS requests when accessed through localhost.

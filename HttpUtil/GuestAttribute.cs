@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HttpUtil
+namespace Microsoft.AspNetCore.Authorization
 {
     /// <summary>
     /// This filter allows anonymous user to access the path but bounces an authenticated user to the home page.
