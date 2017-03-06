@@ -1,5 +1,4 @@
-﻿using Microsoft.ApplicationInsights;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
@@ -15,22 +14,15 @@ namespace HttpUtil
     public class ApiExceptionFilter : ExceptionFilterAttribute
     {
         private readonly bool IsDevelopment;
-        private readonly TelemetryClient Telemetry;
 
         /// <summary>
         /// Constructs an API exception filter. 
         /// If isDevelopment value is TRUE, will cause full error message + stack traces to be returned in the error response.
-        /// If useApplicationInsights is TRUE, will cause the exception to be logged into the ApplicationInsights telemetry.
         /// </summary>
         /// <param name="isDevelopment"></param>
-        /// <param name="useApplicationInsights"></param>
-        public ApiExceptionFilter(bool isDevelopment, bool useApplicationInsights)
+        public ApiExceptionFilter(bool isDevelopment)
         {
             this.IsDevelopment = isDevelopment;
-            if (useApplicationInsights)
-            {
-                this.Telemetry = new TelemetryClient();
-            }
         }
 
         /// <summary>
@@ -44,14 +36,14 @@ namespace HttpUtil
                 return;
             }
 
-            // Because stupid Application Insights doesn't track API exceptions if we return an object result.
-            Telemetry?.TrackException(context.Exception);
-
-            var message = IsDevelopment ? ExtractExceptionMessage(context.Exception) : "An error has occurred.";
+            var message = IsDevelopment ? ExtractExceptionMessage(context.Exception) : "An unhandled exception has occurred.";
             context.Result = new ObjectResult(message)
             {
                 StatusCode = (int)HttpStatusCode.InternalServerError
             };
+
+            // This is done so our error-handling middlewares like ApplicationInsights can actually catch the exception!
+            base.OnException(context);
         }
 
         /// <summary>
