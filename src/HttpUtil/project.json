@@ -15,7 +15,7 @@
   "copyright": "Ryan Elian",
   "description": "A collection of helper classes for greatly assisting an ASP.NET Core MVC development.",
   "language": "en-US",
-  "version": "0.7.0-*",
+  "version": "0.7.1-*",
   "dependencies": {
     "jose-jwt": "2.2.0",
     "Microsoft.AspNetCore.Mvc.Core": "1.1.1",

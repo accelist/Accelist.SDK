@@ -1,11 +1,11 @@
-﻿using Serilog;
+﻿using HttpUtil;
 using Serilog.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HttpUtil
+namespace Serilog
 {
     /// <summary>
     /// Extension method for adding Serilog sink for Accelist Logger.
