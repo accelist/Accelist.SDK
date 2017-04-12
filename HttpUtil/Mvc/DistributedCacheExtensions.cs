@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Microsoft.Extensions.Caching.Distributed
 {
@@ -23,7 +24,10 @@ namespace Microsoft.Extensions.Caching.Distributed
         public static T GetObject<T>(this IDistributedCache cache, string key)
         {
             var json = cache.GetString(key);
-            if (string.IsNullOrEmpty(json)) return default(T);
+            if (string.IsNullOrEmpty(json))
+            {
+                return default(T);
+            }
 
             return JsonConvert.DeserializeObject<T>(json);
         }
@@ -38,7 +42,10 @@ namespace Microsoft.Extensions.Caching.Distributed
         public static async Task<T> GetObjectAsync<T>(this IDistributedCache cache, string key)
         {
             var json = await cache.GetStringAsync(key);
-            if (string.IsNullOrEmpty(json)) return default(T);
+            if (string.IsNullOrEmpty(json))
+            {
+                return default(T);
+            }
 
             return JsonConvert.DeserializeObject<T>(json);
         }

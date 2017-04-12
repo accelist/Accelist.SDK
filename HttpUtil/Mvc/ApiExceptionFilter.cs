@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace HttpUtil
+namespace HttpUtil.Mvc
 {
     /// <summary>
     /// This exception filter is intended to be a global filter added to the MVC Core options for handling API controller error responses.

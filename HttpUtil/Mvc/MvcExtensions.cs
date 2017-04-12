@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 
-namespace HttpUtil
+namespace HttpUtil.Mvc
 {
     /// <summary>
     /// This class contains extension methods for rapidly working with Core MVC objects.
@@ -23,7 +23,7 @@ namespace HttpUtil
         public static string JoinErrorMessages(this ModelStateDictionary modelstate)
         {
             var errors = modelstate.Values.SelectMany(Q => Q.Errors).Select(Q => Q.ErrorMessage);
-            return string.Join(", ", errors);
+            return string.Join("\n", errors);
         }
 
         /// <summary>
@@ -65,31 +65,17 @@ namespace HttpUtil
                     ctx.Response.Headers.Add("Strict-Transport-Security", $"max-age={maxAge}");
                 }
 
-                ctx.Response.Headers.Add("Content-Security-Policy", GenerateContentSecurityPolicy(options));
+                ctx.Response.Headers.Add("Content-Security-Policy", SecuredHeaderOptions.Serialize(options));
                 ctx.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
                 ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
                 ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+
+                //https://scotthelme.co.uk/a-new-security-header-referrer-policy/
+                ctx.Response.Headers.Add("Referrer-Policy", "strict-origin-when-cross-origin");
+
+                //next: https://scotthelme.co.uk/a-new-security-header-expect-ct/
                 await next();
             });
-        }
-
-        /// <summary>
-        /// Attempts to generate content-security-policy using given secured header options.
-        /// </summary>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        private static string GenerateContentSecurityPolicy(SecuredHeaderOptions options)
-        {
-            var hasWhitelist = options?.ContentSecurityPolicyWhitelist?.Any() ?? false;
-
-            var result = "script-src 'self'";
-            if (hasWhitelist == false)
-            {
-                return result;
-            }
-
-            var whitelist = string.Join(" ", options.ContentSecurityPolicyWhitelist);
-            return result + " " + whitelist;
         }
     }
 }

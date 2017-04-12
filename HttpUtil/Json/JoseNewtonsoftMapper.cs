@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HttpUtil
+namespace HttpUtil.Json
 {
     /// <summary>
     /// This is a JSON.NET mapper for JOSE-JWT library.

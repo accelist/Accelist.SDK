@@ -37,8 +37,8 @@ namespace HttpUtil
             // and then ignore any characters outside the acceptable ranges. This works most of the time...
             var normalised = value.Normalize(NormalizationForm.FormKD);
 
-            int len = normalised.Length;
-            bool prevDash = false;
+            var len = normalised.Length;
+            var prevDash = false;
             var sb = new StringBuilder(len);
             char c;
 
