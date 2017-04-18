@@ -11,6 +11,8 @@ namespace HttpUtil.Pagination
 
         public int Page { set; get; }
 
+        public int PageSpan { set; get; } = 4;
+
         public QueryType Query { set; get; }
 
         public int QueryCount { set; get; }

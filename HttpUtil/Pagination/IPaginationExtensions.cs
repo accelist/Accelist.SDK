@@ -11,5 +11,18 @@ namespace HttpUtil.Pagination
         {
             return (int)Math.Ceiling((double)pagination.QueryCount / pagination.ItemsPerPage);
         }
+
+        public static int PageSpanFrom(this IPagination pagination)
+        {
+            var result = pagination.Page - pagination.PageSpan;
+            return (result < 1) ? 1 : result;
+        }
+
+        public static int PageSpanTo(this IPagination pagination)
+        {
+            var result = pagination.Page + pagination.PageSpan;
+            var total = pagination.TotalPage();
+            return (result > total) ? total : result;
+        }
     }
 }

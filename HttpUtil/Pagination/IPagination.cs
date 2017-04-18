@@ -7,8 +7,12 @@ namespace HttpUtil.Pagination
 {
     public interface IPagination
     {
-        int QueryCount { get; }
         int Page { get; }
+
+        int PageSpan { get; }
+
+        int QueryCount { get; }
+
         int ItemsPerPage { get; }
     }
 }
