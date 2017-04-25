@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace HttpUtil.Json
 {
     /// <summary>
-    /// This is a JSON.NET mapper for JOSE-JWT library.
+    /// JSON.NET mapper for JOSE-JWT library for serializing object payload from any class instead of using Dictionary of string-to-object.
     /// </summary>
     public class JoseNewtonsoftMapper : IJsonMapper
     {

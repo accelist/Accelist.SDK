@@ -9,12 +9,21 @@ using Microsoft.Net.Http.Headers;
 
 namespace HttpUtil.Mvc
 {
+    /// <summary>
+    /// Prevents redirecting user to generic error page for API-type requests, but instead return 500 Internal Server Error response.
+    /// </summary>
     public class ApiExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
         private readonly bool _debugMode;
 
+        /// <summary>
+        /// Constructs a new ApiExceptionHandlerMiddleware instance.
+        /// </summary>
+        /// <param name="next"></param>
+        /// <param name="loggerFactory"></param>
+        /// <param name="debugMode"></param>
         public ApiExceptionHandlerMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, bool debugMode)
         {
             _next = next;
@@ -22,6 +31,11 @@ namespace HttpUtil.Mvc
             _debugMode = debugMode;
         }
 
+        /// <summary>
+        /// Attempts log any exception happened during the request and returns 500 Internal Server Error response. The response will contain stack traces if debug mode is enabled.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public async Task Invoke(HttpContext context)
         {
             try
@@ -58,6 +72,11 @@ namespace HttpUtil.Mvc
             }
         }
 
+        /// <summary>
+        /// Returns a well-formed stack trace. If the said exception is an aggregate exception, the inner exceptions will also be appended.
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
         public string Serialize(Exception ex)
         {
             var sb = new StringBuilder();

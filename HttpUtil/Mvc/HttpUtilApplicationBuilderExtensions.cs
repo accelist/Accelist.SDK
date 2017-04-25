@@ -7,15 +7,24 @@ using HttpUtil.Mvc;
 
 namespace Microsoft.AspNetCore.Builder
 {
+    /// <summary>
+    /// Extension methods for adding new ASP.NET Core middlewares.
+    /// </summary>
     public static class HttpUtilApplicationBuilderExtensions
     {
+        /// <summary>
+        /// Adds API Exception Handler to the request execution pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="debugMode"></param>
+        /// <returns></returns>
         public static IApplicationBuilder UseApiExceptionHandler(this IApplicationBuilder app, bool debugMode)
         {
             return app.UseMiddleware<ApiExceptionHandlerMiddleware>(debugMode);
         }
 
         /// <summary>
-        /// Adds secured headers so the site will rank A in accordance to https://securityheaders.io reccomendations.
+        /// Adds secured headers so the application will rank A in accordance to https://securityheaders.io reccomendations.
         /// </summary>
         /// <param name="app"></param>
         /// <param name="options"></param>
