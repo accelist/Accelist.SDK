@@ -4,13 +4,13 @@
     <TargetFrameworks>net451;netstandard1.6</TargetFrameworks>
     <Description>A collection of helper classes for greatly assisting an ASP.NET Core MVC development.</Description>
     <Authors>Ryan Elian</Authors>
-    <Version>0.8.1</Version>
+    <Version>0.8.2</Version>
     <Company>PT Accelist Lentera Indonesia</Company>
     <Product>HttpUtil</Product>
     <Copyright>2017</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ryanelian/HttpUtil</PackageProjectUrl>
-    <PackageTags>JsonContent;GuestAttribute;Secured Headers;Slug;Remote HTTPS;API Exception;API Telemetry;JOSE Newtonsoft Mapper;Pagination</PackageTags>
+    <PackageTags>JsonContent;GuestAttribute;Secured Headers;Slug;API Exception;JOSE Newtonsoft Mapper;Pagination</PackageTags>
     <RepositoryUrl>https://github.com/ryanelian/HttpUtil</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
