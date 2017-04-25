@@ -4,7 +4,7 @@
     <TargetFrameworks>net451;netstandard1.6</TargetFrameworks>
     <Description>A collection of helper classes for greatly assisting an ASP.NET Core MVC development.</Description>
     <Authors>Ryan Elian</Authors>
-    <Version>0.8.2</Version>
+    <Version>0.8.3</Version>
     <Company>PT Accelist Lentera Indonesia</Company>
     <Product>HttpUtil</Product>
     <Copyright>2017</Copyright>

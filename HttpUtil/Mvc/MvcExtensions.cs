@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 
-namespace HttpUtil.Mvc
+namespace Microsoft.AspNetCore.Mvc
 {
     /// <summary>
     /// This class contains extension methods for rapidly working with Core MVC objects.
@@ -45,37 +44,6 @@ namespace HttpUtil.Mvc
         {
             var host = context.Request.Host.Host;
             return (host == "localhost") || (host == "127.0.0.1") || (host == "::1");
-        }
-
-        /// <summary>
-        /// Adds secured headers so the site will rank A in accordance to https://securityheaders.io reccomendations.
-        /// </summary>
-        /// <param name="app"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public static IApplicationBuilder UseSecuredHeaders(this IApplicationBuilder app, SecuredHeaderOptions options = null)
-        {
-            return app.Use(async (ctx, next) =>
-            {
-                if (ctx.Request.IsHttps)
-                {
-                    // Enable HSTS
-                    var hsts = new TimeSpan(365, 0, 0, 0);
-                    var maxAge = Convert.ToInt32(hsts.TotalSeconds);
-                    ctx.Response.Headers.Add("Strict-Transport-Security", $"max-age={maxAge}");
-                }
-
-                ctx.Response.Headers.Add("Content-Security-Policy", SecuredHeaderOptions.Serialize(options));
-                ctx.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
-                ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-                ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
-
-                //https://scotthelme.co.uk/a-new-security-header-referrer-policy/
-                ctx.Response.Headers.Add("Referrer-Policy", "strict-origin-when-cross-origin");
-
-                //next: https://scotthelme.co.uk/a-new-security-header-expect-ct/
-                await next();
-            });
         }
     }
 }
