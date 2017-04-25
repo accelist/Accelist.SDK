@@ -45,7 +45,7 @@ namespace HttpUtil.TagHelpers
         /// <param name="className"></param>
         public void ExecuteAppendLogic(TagHelperOutput output, bool doAppend, string className)
         {
-            this.Class = this.Class.Trim();
+            this.Class = this.Class?.Trim();
 
             if (doAppend)
             {
