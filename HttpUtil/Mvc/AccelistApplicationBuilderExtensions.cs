@@ -10,7 +10,7 @@ namespace Microsoft.AspNetCore.Builder
     /// <summary>
     /// Extension methods for adding new ASP.NET Core middlewares.
     /// </summary>
-    public static class HttpUtilApplicationBuilderExtensions
+    public static class AccelistApplicationBuilderExtensions
     {
         /// <summary>
         /// Adds API Exception Handler to the request execution pipeline.

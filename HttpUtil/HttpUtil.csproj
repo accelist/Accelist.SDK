@@ -4,7 +4,7 @@
     <TargetFrameworks>net451;netstandard1.6</TargetFrameworks>
     <Description>A collection of helper classes for greatly assisting an ASP.NET Core MVC development.</Description>
     <Authors>Ryan Elian</Authors>
-    <Version>0.8.4</Version>
+    <Version>0.9.0</Version>
     <Company>PT Accelist Lentera Indonesia</Company>
     <Product>HttpUtil</Product>
     <Copyright>2017</Copyright>
@@ -27,7 +27,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="jose-jwt" Version="2.2.0" />
+    <PackageReference Include="jose-jwt" Version="2.3.0" />
+    <PackageReference Include="MessagePack" Version="1.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="1.1.1" />
