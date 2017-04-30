@@ -66,43 +66,10 @@ namespace HttpUtil.Mvc
                 var body = "An unhandled exception has occurred!";
                 if (_debugMode)
                 {
-                    body = Serialize(ex);
+                    body = $"{body}\r\n{ex.ToString()}";
                 }
                 await context.Response.WriteAsync(body);
             }
-        }
-
-        /// <summary>
-        /// Returns a well-formed stack trace. If the said exception is an aggregate exception, the inner exceptions will also be appended.
-        /// </summary>
-        /// <param name="ex"></param>
-        /// <returns></returns>
-        public string Serialize(Exception ex)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("An unhandled exception has occurred!");
-            sb.Append(ex.GetType().ToString());
-            sb.Append(": ");
-            sb.AppendLine(ex.Message);
-            sb.Append(ex.StackTrace);
-
-            if (ex is AggregateException ag)
-            {
-                var exs = ag.Flatten().InnerExceptions;
-                for (var i = 0; i < exs.Count; i++)
-                {
-                    var exi = exs[i];
-
-                    sb.Append("\n\n");
-                    sb.Append($"---> (Inner Exception #{i}) ");
-                    sb.Append(exi.GetType().ToString());
-                    sb.Append(": ");
-                    sb.AppendLine(exi.Message);
-                    sb.Append(exi.StackTrace);
-                }
-            }
-
-            return sb.ToString();
         }
     }
 }
