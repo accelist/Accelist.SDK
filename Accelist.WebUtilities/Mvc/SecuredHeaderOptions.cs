@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HttpUtil.Mvc
+namespace Accelist.WebUtilities.Mvc
 {
     /// <summary>
     /// Options to be passed into the security header generator middleware.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HttpUtil
+namespace Accelist.WebUtilities
 {
     /// <summary>
     /// Provides helper methods for generating an SEO-friendly URL slugs efficiently.

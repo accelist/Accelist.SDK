@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HttpUtil.Json
+namespace Accelist.WebUtilities.Json
 {
     /// <summary>
     /// JSON.NET mapper for JOSE-JWT library for serializing object payload from any class instead of using Dictionary of string-to-object.

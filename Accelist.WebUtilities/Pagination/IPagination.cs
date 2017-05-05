@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HttpUtil.Pagination
+namespace Accelist.WebUtilities.Pagination
 {
     /// <summary>
     /// Contains interfaces required for pagination features extension.

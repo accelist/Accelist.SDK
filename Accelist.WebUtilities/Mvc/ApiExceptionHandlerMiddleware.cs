@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 
-namespace HttpUtil.Mvc
+namespace Accelist.WebUtilities.Mvc
 {
     /// <summary>
     /// Prevents redirecting user to generic error page for API-type requests, but instead return 500 Internal Server Error response.

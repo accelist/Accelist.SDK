@@ -4,30 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace HttpUtil.TagHelpers
+namespace Accelist.WebUtilities.TagHelpers
 {
     /// <summary>
-    /// Tag helper for conditionally rendering a tag.
+    /// Tag helper for appending active CSS class for Bootstrap components. 
     /// </summary>
-    [HtmlTargetElement(Attributes = "ry-if")]
-    public class IfTagHelper : TagHelper
+    [HtmlTargetElement(Attributes = "ry-active")]
+    public class ActiveClassTagHelper : ClassAppendTagHelper
     {
         /// <summary>
-        /// Captures the ry-if tag attribute.
+        /// Captures ry-active tag attribute.
         /// </summary>
-        public bool RyIf { set; get; }
+        public bool RyActive { set; get; }
 
         /// <summary>
-        /// Renders the tag only if the ry-if attribute is set to false.
+        /// Appends active CSS class if ry-active property is set to true.
         /// </summary>
         /// <param name="context"></param>
         /// <param name="output"></param>
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            if (RyIf == false)
-            {
-                output.SuppressOutput();
-            }
+            this.ExecuteAppendLogic(output, RyActive, "active");
         }
     }
 }

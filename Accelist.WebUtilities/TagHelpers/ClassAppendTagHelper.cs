@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace HttpUtil.TagHelpers
+namespace Accelist.WebUtilities.TagHelpers
 {
     /// <summary>
     /// Abstract tag helper for appending a class to existing tag class attribute. 
