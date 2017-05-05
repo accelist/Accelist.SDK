@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>net451;netstandard1.6</TargetFrameworks>
-    <Description>A collection of helper classes for greatly assisting an ASP.NET Core MVC development.</Description>
+    <Description>A curated collection of utility classes for greatly assisting an ASP.NET Core MVC application development.</Description>
     <Authors>Ryan Elian</Authors>
-    <Version>0.10.0-beta12</Version>
+    <Version>0.10.0-beta13</Version>
     <Company>PT Accelist Lentera Indonesia</Company>
     <Copyright>2017</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
@@ -22,7 +22,7 @@
     <PackageReference Include="MessagePack" Version="1.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="1.1.1" />
     <PackageReference Include="Serilog.Sinks.Http" Version="3.1.1" />
   </ItemGroup>
