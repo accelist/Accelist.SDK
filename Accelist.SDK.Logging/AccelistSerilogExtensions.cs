@@ -14,13 +14,13 @@ namespace Serilog
         public static LoggerConfiguration Accelist(this LoggerSinkConfiguration sinkConfiguration, Guid appId, string server = "https://log.accelist.com", LogEventLevel minimumSeverity = LogEventLevel.Information)
         {
             var url = server.TrimEnd('/') + "/api/v1/log";
-            var options = new Sinks.Http.DurableOptions
+            var options = new Sinks.Http.Options
             {
                 FormattingType = Sinks.Http.FormattingType.Normal,
                 Period = new TimeSpan(0, 0, 15)
             };
             var client = new AccelistLoggingClient(appId);
-            return sinkConfiguration.DurableHttp(url, options, httpClient: client, restrictedToMinimumLevel: minimumSeverity);
+            return sinkConfiguration.Http(url, options, httpClient: client, restrictedToMinimumLevel: minimumSeverity);
         }
     }
 }
