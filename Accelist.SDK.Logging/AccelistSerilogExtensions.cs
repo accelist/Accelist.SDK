@@ -11,16 +11,18 @@ namespace Serilog
 {
     public static class AccelistSerilogExtensions
     {
-        public static LoggerConfiguration Accelist(this LoggerSinkConfiguration sinkConfiguration, Guid appId, string server = "https://log.accelist.com", LogEventLevel minimumSeverity = LogEventLevel.Information)
+        public static LoggerConfiguration Accelist(this LoggerSinkConfiguration sinkConfiguration, Guid appId, string server = null, LogEventLevel minimumSeverity = LogEventLevel.Information)
         {
-            var url = server.TrimEnd('/') + "/api/v1/log";
-            var options = new Sinks.Http.Options
+            var dom = server?.TrimEnd('/') ?? "https://log.accelist.com";
+
+            var option = new Serilog.Sinks.Http.Options
             {
-                FormattingType = Sinks.Http.FormattingType.Normal,
+                FormattingType = Serilog.Sinks.Http.FormattingType.Normal,
                 Period = new TimeSpan(0, 0, 15)
             };
+
             var client = new AccelistLoggingClient(appId);
-            return sinkConfiguration.Http(url, options, httpClient: client, restrictedToMinimumLevel: minimumSeverity);
+            return sinkConfiguration.Http(dom + "/api/v1/log", option, minimumSeverity, client);
         }
     }
 }
