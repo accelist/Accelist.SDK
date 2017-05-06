@@ -4,7 +4,7 @@
 
 > Formerly known as HttpUtil
 
-[![Build status](https://ci.appveyor.com/api/projects/status/iwjkwiqieic912lr/branch/master?svg=true)](https://ci.appveyor.com/project/RyanElian/httputil/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/1bjgdjrb2jy1godo/branch/master?svg=true)](https://ci.appveyor.com/project/RyanElian/accelist-sdk/branch/master)
 
 [![NuGet HttpUtil](https://img.shields.io/nuget/v/Accelist.SDK.svg)](https://www.nuget.org/packages/Accelist.SDK/)
 
