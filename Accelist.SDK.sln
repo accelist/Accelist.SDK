@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{69D5C5D1-2E82-4FE3-AA55-E0D0E51F809F}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.txt = LICENSE.txt
+		README.MD = README.MD
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK.CoreMvc", "Accelist.SDK.CoreMvc\Accelist.SDK.CoreMvc.csproj", "{324B0054-358E-4AF4-977F-FD702A25D2A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK.CoreMvc.Caching", "Accelist.SDK.CoreMvc.Caching\Accelist.SDK.CoreMvc.Caching.csproj", "{B427C157-E2F5-4EED-9044-EA90EEED8B6F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK.Logging", "Accelist.SDK.Logging\Accelist.SDK.Logging.csproj", "{3C4E8938-6756-4898-9BC0-6312F957E6E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK.REST", "Accelist.SDK.REST\Accelist.SDK.REST.csproj", "{3C6847CD-40D2-4018-AB18-AC96F3CFE78A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK.SQL", "Accelist.SDK.SQL\Accelist.SDK.SQL.csproj", "{EBE5D44F-289E-4DA7-BA5E-A0A2B1F3D58B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK", "Accelist.SDK\Accelist.SDK.csproj", "{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{324B0054-358E-4AF4-977F-FD702A25D2A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324B0054-358E-4AF4-977F-FD702A25D2A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{324B0054-358E-4AF4-977F-FD702A25D2A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324B0054-358E-4AF4-977F-FD702A25D2A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B427C157-E2F5-4EED-9044-EA90EEED8B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B427C157-E2F5-4EED-9044-EA90EEED8B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B427C157-E2F5-4EED-9044-EA90EEED8B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B427C157-E2F5-4EED-9044-EA90EEED8B6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C4E8938-6756-4898-9BC0-6312F957E6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C4E8938-6756-4898-9BC0-6312F957E6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C4E8938-6756-4898-9BC0-6312F957E6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C4E8938-6756-4898-9BC0-6312F957E6E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C6847CD-40D2-4018-AB18-AC96F3CFE78A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C6847CD-40D2-4018-AB18-AC96F3CFE78A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C6847CD-40D2-4018-AB18-AC96F3CFE78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C6847CD-40D2-4018-AB18-AC96F3CFE78A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBE5D44F-289E-4DA7-BA5E-A0A2B1F3D58B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBE5D44F-289E-4DA7-BA5E-A0A2B1F3D58B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBE5D44F-289E-4DA7-BA5E-A0A2B1F3D58B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBE5D44F-289E-4DA7-BA5E-A0A2B1F3D58B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

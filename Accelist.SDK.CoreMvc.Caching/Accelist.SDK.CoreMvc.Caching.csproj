@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>0.10.0</Version>
+    <Authors>Ryan Elian</Authors>
+    <Company>PT Accelist Lentera Indonesia</Company>
+    <Description>Extension classes for ISession and IDistributedCache, enabling the functionality to set or get objects of any type using fast MessagePack serializer with LZ4 compression algorithm.</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ryanelian/Accelist.SDK</PackageProjectUrl>
+    <PackageTags>IDistributedCache;ISession;Extension Methods;Set Object;Get Object;MessagePack;Serialize;Compression</PackageTags>
+    <RepositoryUrl>https://github.com/ryanelian/Accelist.SDK</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MessagePack" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>

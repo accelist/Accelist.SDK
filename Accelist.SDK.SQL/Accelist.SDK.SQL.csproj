@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>0.10.0</Version>
+    <Authors>Ryan Elian</Authors>
+    <Company>PT Accelist Lentera Indonesia</Company>
+    <Description>Provides extension methods to Entity Framework Core DbContext, for querying using parameterized raw SQL queries, then logged using Serilog. Provides pagination base classes and methods.</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ryanelian/Accelist.SDK</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ryanelian/Accelist.SDK</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Entity Framework Core Dapper Extension Methods;Pagination</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.1" />
+    <PackageReference Include="Serilog" Version="2.4.0" />
+  </ItemGroup>
+
+</Project>

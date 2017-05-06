@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>0.10.0</Version>
+    <Authors>Ryan Elian</Authors>
+    <Company>PT Accelist Lentera Indonesia</Company>
+    <Description>Accelist.SDK is a .NET development framework, designed with simplicity in mind, built to improve the quality of life of ASP.NET Core MVC developers by providing essential classes that are missing from the base framework.</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ryanelian/Accelist.SDK</PackageProjectUrl>
+    <PackageTags>SDK;ASP.NET Core MVC;Entity Framework Core;Serilog;Redis;Session;Caching;REST;SQL</PackageTags>
+    <RepositoryUrl>https://github.com/ryanelian/Accelist.SDK</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Accelist.SDK.CoreMvc.Caching\Accelist.SDK.CoreMvc.Caching.csproj" />
+    <ProjectReference Include="..\Accelist.SDK.CoreMvc\Accelist.SDK.CoreMvc.csproj" />
+    <ProjectReference Include="..\Accelist.SDK.Logging\Accelist.SDK.Logging.csproj" />
+    <ProjectReference Include="..\Accelist.SDK.REST\Accelist.SDK.REST.csproj" />
+    <ProjectReference Include="..\Accelist.SDK.SQL\Accelist.SDK.SQL.csproj" />
+  </ItemGroup>
+
+</Project>

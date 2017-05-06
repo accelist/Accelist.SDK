@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>0.10.0</Version>
+    <Authors>Ryan Elian</Authors>
+    <Company>PT Accelist Lentera Indonesia</Company>
+    <Description>A curated collection of utility classes for greatly assisting an ASP.NET Core MVC application development.</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ryanelian/Accelist.SDK</PackageProjectUrl>
+    <PackageTags>JOSE-Newtonsoft Mapper;Slug;API Exception Middleware;Secure Headers Middleware;GuestAttribute;CSS Tag Helpers;Conditional Tag Helper</PackageTags>
+    <RepositoryUrl>https://github.com/ryanelian/Accelist.SDK</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="jose-jwt" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>
