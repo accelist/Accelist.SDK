@@ -71,6 +71,12 @@ WHERE t.is_ms_shipped = 0
 
             Log.Information("SQL Server: Scanning indexes with > 10% fragmentation rate, with > 1000 pages count. ({ElapsedMilliseconds}ms)", stopwatch.ElapsedMilliseconds);
 
+            if (scans.Any() == false)
+            {
+                Log.Information("SQL Server: No index fragmentation found, cancelling defrgamentation.");
+                return;
+            }
+
             // Build commands, based on scan results
             var sb = new StringBuilder();
             foreach (var scan in scans)
