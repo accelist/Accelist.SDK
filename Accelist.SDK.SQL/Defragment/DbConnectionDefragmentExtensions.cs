@@ -25,6 +25,10 @@ namespace Dapper
 
         public bool IsIdentity { set; get; }
 
+        /// <summary>
+        /// Returns a calculated fill factor, depending on currently set fill factor of the index, and whether the index column is an IDENTITY-type (auto-incrementing) PRIMARY KEY.
+        /// </summary>
+        /// <returns></returns>
         public int CalculateFillFactor()
         {
             if (FillFactor != 0)
@@ -43,8 +47,18 @@ namespace Dapper
         }
     }
 
+    /// <summary>
+    /// Provides extension methods for defragmenting SQL Server database.
+    /// </summary>
     public static class DbConnectionDefragmentExtensions
     {
+        /// <summary>
+        /// Performs defragmentation to a provided SQL Server database connection. 
+        /// Allows online rebuild only if the database server is Enterprise edition.
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="onlineRebuild"></param>
+        /// <returns></returns>
         public static async Task DefragmentAsync(this IDbConnection db, bool onlineRebuild = false)
         {
             var stopwatch = Stopwatch.StartNew();
@@ -73,47 +87,41 @@ WHERE t.is_ms_shipped = 0
 
             if (scans.Any() == false)
             {
-                Log.Information("SQL Server: No index fragmentation found, cancelling defrgamentation.");
+                Log.Information("SQL Server: No defragmentation required.");
                 return;
             }
 
-            // Build commands, based on scan results
-            var sb = new StringBuilder();
+            // Build commands, based on scan results. Execute the commands in-loop because ExecuteNonQuery does NOT understand GO statement separator!
             foreach (var scan in scans)
             {
+                stopwatch.Restart();
                 if (scan.FragmentRate > 30)
                 {
                     // rebuild
                     var ff = scan.CalculateFillFactor();
-                    Log.Information("Index {Index} on table {Schema}.{Table} is heavily fragmented at {FragmentRate}%, with {PageCount} pages. Rebuilding with fill factor: {FillFactor}%.",
-                        scan.Index, scan.Schema, scan.Table, scan.FragmentRate, scan.PageCount, ff
-                        );
                     if (onlineRebuild)
                     {
-                        sb.AppendLine($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REBUILD WITH (FILLFACTOR = {ff}, ONLINE = ON)");
+                        await db.ExecuteAsync($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REBUILD WITH (FILLFACTOR = {ff}, ONLINE = ON)");
                     }
                     else
                     {
-                        sb.AppendLine($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REBUILD WITH (FILLFACTOR = {ff})");
+                        await db.ExecuteAsync($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REBUILD WITH (FILLFACTOR = {ff})");
                     }
+
+                    Log.Information("Index {Index} on table {Schema}.{Table} is heavily fragmented at {FragmentRate}%, with {PageCount} pages. Rebuilding with fill factor: {FillFactor}%. ({ElapsedMilliseconds} ms)",
+                        scan.Index, scan.Schema, scan.Table, scan.FragmentRate, scan.PageCount, ff, stopwatch.ElapsedMilliseconds
+                        );
                 }
                 else
                 {
                     //reorganize
-                    Log.Information("Index {Index} on table {Schema}.{Table} is fragmented at {FragmentRate}%, with {PageCount} pages. Reorganizing.",
-                        scan.Index, scan.Schema, scan.Table, scan.FragmentRate, scan.PageCount
+                    await db.ExecuteAsync($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REORGANIZE");
+
+                    Log.Information("Index {Index} on table {Schema}.{Table} is fragmented at {FragmentRate}%, with {PageCount} pages. Reorganizing. ({ElapsedMilliseconds} ms)",
+                        scan.Index, scan.Schema, scan.Table, scan.FragmentRate, scan.PageCount, stopwatch.ElapsedMilliseconds
                         );
-                    sb.AppendLine($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REORGANIZE");
                 }
-                sb.AppendLine("GO");
             }
-
-            var sql = sb.ToString();
-
-            // Execute the commands
-            stopwatch.Restart();
-            await db.ExecuteAsync(sql);
-            Log.Information("SQL Server: Execute defragmentation commands. ({ElapsedMilliseconds}ms) {CommandText}", stopwatch.ElapsedMilliseconds, sql);
         }
     }
 }
