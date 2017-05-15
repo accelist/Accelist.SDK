@@ -46,7 +46,7 @@ WHERE t.is_ms_shipped = 0 AND NOT (t.name = 'sysdiagrams')");
             AND indexstats.avg_fragmentation_in_percent > 10
             */
 
-            Log.Information("Scanning SQL Server database {DatabaseName} index fragmentations: ({ElapsedMilliseconds} ms) {Scans}",
+            Log.Information("Scanning SQL Server database {DatabaseName} index fragmentations: ({ElapsedMilliseconds} ms) {@Scans}",
                 db.Database, stopwatch.ElapsedMilliseconds, scans);
             return scans;
         }
@@ -101,6 +101,11 @@ WHERE t.is_ms_shipped = 0 AND NOT (t.name = 'sysdiagrams')");
         public static async Task DefragmentAsync(this IDbConnection db, bool onlineRebuild = false)
         {
             var commands = await db.PlanDefragmentAsync(onlineRebuild);
+            if (commands.Any() == false)
+            {
+                return;
+            }
+
             var sw = Stopwatch.StartNew();
 
             // We need to do this, because GO is not supported by ExecuteNonQuery method!

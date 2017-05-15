@@ -155,7 +155,7 @@ namespace Dapper
         /// <returns></returns>
         public static Task DefragmentAsync(this DbContext db, bool onlineRebuild = false)
         {
-            Log.Information("Performing SQL Server defragmentation on Entity Framework Core database context {DbContext}", db.GetType().Name);
+            Log.Information("Attempting to defragment SQL Server database via Entity Framework Core database context {DbContext}.", db.GetType().Name);
             return db.Database.GetDbConnection().DefragmentAsync(onlineRebuild);
         }
     }
