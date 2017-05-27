@@ -9,12 +9,25 @@ using System.Threading.Tasks;
 
 namespace Accelist.SDK.REST
 {
+    /// <summary>
+    /// Implementation of .NET HttpClient that does not suck when used as a Singleton.
+    /// (Default HttpClient does not honor DNS changes)
+    /// </summary>
     public class UltimateHttpClient
     {
+        /// <summary>
+        /// Singleton instance of the global custom HttpClient instance.
+        /// </summary>
         private static HttpClient _Instance;
 
+        /// <summary>
+        /// Lock object for instantiating singleton custom HttpClient instance.
+        /// </summary>
         private static object _InstanceLock = new object();
 
+        /// <summary>
+        /// Lazy accessor for application-wide custom HttpClient singleton instance, that automatically logs and close the socket used for connection when finished.
+        /// </summary>
         public static HttpClient Instance
         {
             get

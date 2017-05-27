@@ -27,7 +27,7 @@ namespace Microsoft.AspNetCore.Builder
         }
 
         /// <summary>
-        /// Adds secured headers so the application will rank A in accordance to https://securityheaders.io reccomendations.
+        /// Adds secured headers so the application will rank A in accordance to https://securityheaders.io recommendations.
         /// </summary>
         /// <param name="app"></param>
         /// <param name="options"></param>

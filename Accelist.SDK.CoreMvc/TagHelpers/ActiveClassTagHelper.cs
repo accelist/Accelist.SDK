@@ -13,7 +13,7 @@ namespace Accelist.SDK.CoreMvc.TagHelpers
     public class ActiveClassTagHelper : ClassAppendTagHelper
     {
         /// <summary>
-        /// Captures ry-active tag attribute.
+        /// Captures acl-active tag attribute.
         /// </summary>
         public bool AclActive { set; get; }
 

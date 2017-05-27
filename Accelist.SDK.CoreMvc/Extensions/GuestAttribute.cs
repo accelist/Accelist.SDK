@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Microsoft.AspNetCore.Authorization
 {
@@ -20,7 +20,7 @@ namespace Microsoft.AspNetCore.Authorization
         public string RedirectTo { set; get; }
 
         /// <summary>
-        /// 
+        /// No-op.
         /// </summary>
         /// <param name="context"></param>
         public void OnActionExecuted(ActionExecutedContext context)

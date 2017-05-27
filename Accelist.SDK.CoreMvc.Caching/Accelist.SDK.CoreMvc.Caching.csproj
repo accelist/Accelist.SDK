@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MessagePack" Version="1.2.2" />
+    <PackageReference Include="MessagePack" Version="1.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="1.1.2" />
   </ItemGroup>

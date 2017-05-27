@@ -26,7 +26,7 @@ namespace Dapper
         private static void LogDapperQuery(DbContext dbContext, string commandText, long elapsedMilliseconds)
         {
             // This technique will cause the log to not be logged into loggers other than Serilog.
-            // But eh, we're using Serilog anyway so...
+            // But eh, we're only using Serilog anyway so...
             Log.Information("Dapper via Entity Framework Core database context {DbContext}: ({ElapsedMilliseconds} ms) {CommandText}", dbContext.GetType().Name, elapsedMilliseconds, commandText);
         }
 
