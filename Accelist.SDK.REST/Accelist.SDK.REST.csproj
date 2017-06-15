@@ -4,7 +4,7 @@
     <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>0.10.1</Version>
+    <Version>0.10.5</Version>
     <Authors>Ryan Elian</Authors>
     <Company>PT Accelist Lentera Indonesia</Company>
     <Description>UltimateHttpClient provides singleton HttpClient, which is set to close socket after each request performed, then logs using Serilog.

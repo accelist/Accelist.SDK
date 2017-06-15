@@ -25,7 +25,7 @@ namespace Accelist.SDK.SQL.Defragment
             var stopwatch = Stopwatch.StartNew();
 
             // First do a full-database index scan
-            var scans = await db.QueryAsync<IndexScan>(@"SELECT DISTINCT
+            var scans = await db.QueryAsync<IndexScan>(@"SELECT
     s.name as [Schema],
     t.name as [Table],
     ind.name as [Index],
@@ -33,18 +33,13 @@ namespace Accelist.SDK.SQL.Defragment
     indexstats.avg_fragmentation_in_percent as [FragmentRate],
     ind.fill_factor as [FillFactor],
     col.is_identity as [IsIdentity]
-FROM sys.dm_db_index_physical_stats(DB_ID(), NULL, NULL, NULL, 'DETAILED') indexstats 
+FROM sys.dm_db_index_physical_stats(DB_ID(), NULL, NULL, NULL, NULL) indexstats 
 JOIN sys.indexes ind ON indexstats.object_id = ind.object_id and indexstats.index_id = ind.index_id
 JOIN sys.index_columns ic ON  ind.object_id = ic.object_id and ind.index_id = ic.index_id 
 JOIN sys.columns col ON ic.object_id = col.object_id and ic.column_id = col.column_id 
 JOIN sys.tables t ON ind.object_id = t.object_id 
 JOIN sys.schemas s on s.schema_id = t.schema_id
-WHERE t.is_ms_shipped = 0 AND NOT (t.name = 'sysdiagrams')");
-
-            /*
-            AND indexstats.page_count > 1000
-            AND indexstats.avg_fragmentation_in_percent > 10
-            */
+WHERE indexstats.page_count > 1000 AND indexstats.avg_fragmentation_in_percent > 10", commandTimeout: 120);
 
             Log.Information("Scanning SQL Server database {DatabaseName} index fragmentations: ({ElapsedMilliseconds} ms) {@Scans}",
                 db.Database, stopwatch.ElapsedMilliseconds, scans);
@@ -62,28 +57,27 @@ WHERE t.is_ms_shipped = 0 AND NOT (t.name = 'sysdiagrams')");
         public static async Task<List<string>> PlanDefragmentAsync(this IDbConnection db, bool onlineRebuild = false)
         {
             var scans = await db.FragmentationScanAsync();
-            var fragments = scans.Where(Q => Q.PageCount > 1000 && Q.FragmentRate > 10);
             var commands = new List<string>();
 
-            foreach (var fragment in fragments)
+            foreach (var scan in scans)
             {
-                if (fragment.FragmentRate > 30)
+                if (scan.FragmentRate > 30)
                 {
                     // rebuild
-                    var ff = fragment.CalculateFillFactor();
+                    var ff = scan.CalculateFillFactor();
                     if (onlineRebuild)
                     {
-                        commands.Add($"ALTER INDEX [{fragment.Index}] ON [{fragment.Schema}].[{fragment.Table}] REBUILD WITH (FILLFACTOR = {ff}, ONLINE = ON)");
+                        commands.Add($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REBUILD WITH (FILLFACTOR = {ff}, ONLINE = ON)");
                     }
                     else
                     {
-                        commands.Add($"ALTER INDEX [{fragment.Index}] ON [{fragment.Schema}].[{fragment.Table}] REBUILD WITH (FILLFACTOR = {ff})");
+                        commands.Add($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REBUILD WITH (FILLFACTOR = {ff})");
                     }
                 }
                 else
                 {
                     //reorganize
-                    commands.Add($"ALTER INDEX [{fragment.Index}] ON [{fragment.Schema}].[{fragment.Table}] REORGANIZE");
+                    commands.Add($"ALTER INDEX [{scan.Index}] ON [{scan.Schema}].[{scan.Table}] REORGANIZE");
                 }
             }
 
@@ -111,7 +105,7 @@ WHERE t.is_ms_shipped = 0 AND NOT (t.name = 'sysdiagrams')");
             // We need to do this, because GO is not supported by ExecuteNonQuery method!
             foreach (var command in commands)
             {
-                await db.ExecuteAsync(command);
+                await db.ExecuteAsync(command, commandTimeout: 120);
             }
             Log.Information("Defragmenting SQL Server database {DatabaseName}. ({ElapsedMilliseconds} ms)", db.Database, sw.ElapsedMilliseconds);
         }

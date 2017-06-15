@@ -4,7 +4,7 @@
     <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>0.10.4</Version>
+    <Version>0.10.5</Version>
     <Authors>Ryan Elian</Authors>
     <Company>PT Accelist Lentera Indonesia</Company>
     <Description>Customized Serilog periodic batch sink for sending log to Accelist Central Log System using HTTP POST.</Description>
