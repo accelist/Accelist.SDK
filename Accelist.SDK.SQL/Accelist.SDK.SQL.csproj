@@ -6,7 +6,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>0.11.5</Version>
     <Authors>Ryan Elian</Authors>
-    <Company>PT Accelist Lentera Indonesia</Company>
+    <Company>PT. Accelist Lentera Indonesia</Company>
     <Description>Provides extension methods to Entity Framework Core DbContext, for querying using parameterized raw SQL queries, then logged using Serilog. Provides extension methods for defragmenting database indexes. Provides pagination base classes and methods.</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ryanelian/Accelist.SDK</PackageProjectUrl>
@@ -18,7 +18,7 @@
   <ItemGroup>
     <PackageReference Include="Dapper.StrongName" Version="1.50.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.2" />
-    <PackageReference Include="Serilog" Version="2.4.0" />
+    <PackageReference Include="Serilog" Version="2.5.0" />
   </ItemGroup>
 
 </Project>

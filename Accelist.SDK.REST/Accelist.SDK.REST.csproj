@@ -6,7 +6,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>0.10.5</Version>
     <Authors>Ryan Elian</Authors>
-    <Company>PT Accelist Lentera Indonesia</Company>
+    <Company>PT. Accelist Lentera Indonesia</Company>
     <Description>UltimateHttpClient provides singleton HttpClient, which is set to close socket after each request performed, then logs using Serilog.
 JsonContent allows constructing HttpContent by passing an object, serialized as JSON.</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
@@ -18,7 +18,7 @@ JsonContent allows constructing HttpContent by passing an object, serialized as 
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-    <PackageReference Include="Serilog" Version="2.4.0" />
+    <PackageReference Include="Serilog" Version="2.5.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net461'">

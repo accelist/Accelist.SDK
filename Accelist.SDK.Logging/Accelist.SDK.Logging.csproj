@@ -6,7 +6,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>0.10.5</Version>
     <Authors>Ryan Elian</Authors>
-    <Company>PT Accelist Lentera Indonesia</Company>
+    <Company>PT. Accelist Lentera Indonesia</Company>
     <Description>Customized Serilog periodic batch sink for sending log to Accelist Central Log System using HTTP POST.</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ryanelian/Accelist.SDK</PackageProjectUrl>

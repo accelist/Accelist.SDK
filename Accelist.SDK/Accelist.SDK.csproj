@@ -6,7 +6,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>0.11.5</Version>
     <Authors>Ryan Elian</Authors>
-    <Company>PT Accelist Lentera Indonesia</Company>
+    <Company>PT. Accelist Lentera Indonesia</Company>
     <Description>Accelist.SDK is a .NET development framework, designed with simplicity in mind, built to improve the quality of life of ASP.NET Core MVC developers by providing essential classes that are missing from the base framework.</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ryanelian/Accelist.SDK</PackageProjectUrl>
