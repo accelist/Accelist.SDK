@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{69D5C5D1-2E82-4FE3-AA55-E0D0E51F809F}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,6 +20,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK.SQL", "Accelist.SDK.SQL\Accelist.SDK.SQL.csproj", "{EBE5D44F-289E-4DA7-BA5E-A0A2B1F3D58B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK", "Accelist.SDK\Accelist.SDK.csproj", "{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accelist.SDK.PWDB", "Accelist.SDK.PWDB\Accelist.SDK.PWDB.csproj", "{3DF32378-8FBB-4A48-B4B3-25487FA4FEE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC4CCB7-0DE9-41F9-8BC2-DE2E5B6EE6E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF32378-8FBB-4A48-B4B3-25487FA4FEE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF32378-8FBB-4A48-B4B3-25487FA4FEE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF32378-8FBB-4A48-B4B3-25487FA4FEE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF32378-8FBB-4A48-B4B3-25487FA4FEE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

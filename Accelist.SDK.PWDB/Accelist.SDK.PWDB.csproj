@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>0.1.0</Version>
+    <Authors>Ryan Elian</Authors>
+    <Company>PT. Accelist Lentera Indonesia</Company>
+    <Description>Provides methods for validating a secure password.</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ryanelian/Accelist.SDK</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ryanelian/Accelist.SDK</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Passwords;SecLists</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="rockyou-min9-200k.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="rockyou-min9-200k.zip" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
+    <Reference Include="System.IO.Compression" />
+  </ItemGroup>
+
+</Project>
