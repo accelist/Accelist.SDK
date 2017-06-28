@@ -46,7 +46,7 @@ namespace Accelist.SDK.PWDB
         {
             get
             {
-                return typeof(PasswordChecker).GetTypeInfo().Assembly.GetManifestResourceStream("Accelist.SDK.PWDB.rockyou-min9-200k.zip");
+                return typeof(PasswordChecker).GetTypeInfo().Assembly.GetManifestResourceStream("Accelist.SDK.PWDB.rockyou3min9.zip");
             }
         }
 

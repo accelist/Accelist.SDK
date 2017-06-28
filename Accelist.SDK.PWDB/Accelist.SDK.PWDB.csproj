@@ -4,7 +4,7 @@
     <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Ryan Elian</Authors>
     <Company>PT. Accelist Lentera Indonesia</Company>
     <Description>Provides methods for validating a secure password.</Description>
@@ -15,16 +15,16 @@
     <PackageTags>Passwords;SecLists</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="rockyou-min9-200k.zip" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="rockyou-min9-200k.zip" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework)'=='net461'">
     <Reference Include="System.IO.Compression" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="rockyou3min9.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="rockyou3min9.zip" />
   </ItemGroup>
 
 </Project>
