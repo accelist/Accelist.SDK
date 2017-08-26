@@ -39,7 +39,7 @@ JOIN sys.index_columns ic ON  ind.object_id = ic.object_id and ind.index_id = ic
 JOIN sys.columns col ON ic.object_id = col.object_id and ic.column_id = col.column_id 
 JOIN sys.tables t ON ind.object_id = t.object_id 
 JOIN sys.schemas s on s.schema_id = t.schema_id
-WHERE indexstats.page_count > 1000 AND indexstats.avg_fragmentation_in_percent > 10", commandTimeout: 120);
+WHERE indexstats.page_count > 1000 AND indexstats.avg_fragmentation_in_percent > 10", commandTimeout: 600);
 
             Log.Information("Scanning SQL Server database {DatabaseName} index fragmentations: ({ElapsedMilliseconds} ms) {@Scans}",
                 db.Database, stopwatch.ElapsedMilliseconds, scans);
@@ -102,10 +102,11 @@ WHERE indexstats.page_count > 1000 AND indexstats.avg_fragmentation_in_percent >
 
             var sw = Stopwatch.StartNew();
 
-            // We need to do this, because GO is not supported by ExecuteNonQuery method!
             foreach (var command in commands)
             {
-                await db.ExecuteAsync(command, commandTimeout: 120);
+                // We need to do this, because GO is not supported by ExecuteNonQuery method!
+                // Also, timeout is set to 600 seconds = 10 minutes because it can take a while...
+                await db.ExecuteAsync(command, commandTimeout: 600);
             }
             Log.Information("Defragmenting SQL Server database {DatabaseName}. ({ElapsedMilliseconds} ms)", db.Database, sw.ElapsedMilliseconds);
         }

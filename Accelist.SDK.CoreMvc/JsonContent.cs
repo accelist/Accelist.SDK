@@ -1,12 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
+using Newtonsoft.Json;
 
-namespace Accelist.SDK.REST
+namespace System.Net.Http
 {
     /// <summary>
     /// Provides HTTP content based on a UTF-8 JSON-serialized object.

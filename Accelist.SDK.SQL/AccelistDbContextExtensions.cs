@@ -31,35 +31,6 @@ namespace Dapper
         }
 
         /// <summary>
-        /// Synchronously sends parameterized SQL non-result query to the underlying database connection of the Entity Framework Core database context using Dapper,
-        /// returning the number of rows affected by the query.
-        /// Allows passing object array as query parameter, for bulk operation using the same command text against each object.
-        /// Automatically captures ongoing database context transaction to be passed into the query method.
-        /// </summary>
-        /// <param name="dbContext"></param>
-        /// <param name="commandText"></param>
-        /// <param name="param"></param>
-        /// <param name="commandType"></param>
-        /// <returns></returns>
-        public static int Execute(this DbContext dbContext, string commandText, object param = null, CommandType? commandType = null)
-        {
-            var stopwatch = Stopwatch.StartNew();
-
-            var db = dbContext.Database.GetDbConnection();
-            var transaction = dbContext.Database.CurrentTransaction?.GetDbTransaction();
-
-            var result = db.Execute(
-                sql: commandText,
-                param: param,
-                transaction: transaction,
-                commandType: commandType
-            );
-
-            LogDapperQuery(dbContext, commandText, stopwatch.ElapsedMilliseconds);
-            return result;
-        }
-
-        /// <summary>
         /// Asynchronously sends parameterized SQL non-result query to the underlying database connection of the Entity Framework Core database context using Dapper,
         /// returning the number of rows affected by the query.
         /// Allows passing object array as query parameter, for bulk operation using the same command text against each object.
@@ -86,35 +57,6 @@ namespace Dapper
 
             LogDapperQuery(dbContext, commandText, stopwatch.ElapsedMilliseconds);
             return result;
-        }
-
-        /// <summary>
-        /// Synchronously sends parameterized SQL query to the underlying database connection of the Entity Framework Core database context using Dapper,
-        /// returning the buffered result as an explicitly typed List.
-        /// Automatically captures ongoing database context transaction to be passed into the query method.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="dbContext"></param>
-        /// <param name="commandText"></param>
-        /// <param name="param"></param>
-        /// <param name="commandType"></param>
-        /// <returns></returns>
-        public static List<T> Query<T>(this DbContext dbContext, string commandText, object param = null, CommandType? commandType = null)
-        {
-            var stopwatch = Stopwatch.StartNew();
-
-            var db = dbContext.Database.GetDbConnection();
-            var transaction = dbContext.Database.CurrentTransaction?.GetDbTransaction();
-
-            var result = db.Query<T>(
-                sql: commandText,
-                param: param,
-                transaction: transaction,
-                commandType: commandType
-            );
-
-            LogDapperQuery(dbContext, commandText, stopwatch.ElapsedMilliseconds);
-            return result.AsList();
         }
 
         /// <summary>

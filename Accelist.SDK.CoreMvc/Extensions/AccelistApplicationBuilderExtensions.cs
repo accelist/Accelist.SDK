@@ -39,25 +39,23 @@ namespace Microsoft.AspNetCore.Builder
                 options = new SecuredHeaderOptions();
             }
 
-            return app.Use(async (ctx, next) =>
+            return app.Use(async (context, next) =>
             {
-                if (ctx.Request.IsHttps)
+                if (context.Request.IsHttps)
                 {
                     // Enable HSTS
                     var hsts = new TimeSpan(365, 0, 0, 0);
                     var maxAge = Convert.ToInt32(hsts.TotalSeconds);
-                    ctx.Response.Headers.Add("Strict-Transport-Security", $"max-age={maxAge}");
+                    context.Response.Headers.Add("Strict-Transport-Security", $"max-age={maxAge}");
                 }
 
-                ctx.Response.Headers.Add("Content-Security-Policy", options.SerializeContentSecurityPolicy());
-                ctx.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
-                ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-                ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                context.Response.Headers.Add("Content-Security-Policy", options.SerializeContentSecurityPolicy());
+                context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
+                context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                context.Response.Headers.Add("Referrer-Policy", "same-origin");
 
-                //https://scotthelme.co.uk/a-new-security-header-referrer-policy/
-                ctx.Response.Headers.Add("Referrer-Policy", "strict-origin-when-cross-origin");
-
-                //next: https://scotthelme.co.uk/a-new-security-header-expect-ct/
+                //Expect CT: https://scotthelme.co.uk/a-new-security-header-expect-ct/
                 await next();
             });
         }

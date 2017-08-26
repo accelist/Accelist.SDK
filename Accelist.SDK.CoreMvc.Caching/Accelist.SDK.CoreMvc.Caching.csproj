@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>0.10.5</Version>
+    <Version>0.12.0</Version>
     <Authors>Ryan Elian</Authors>
     <Company>PT. Accelist Lentera Indonesia</Company>
     <Description>Extension classes for ISession and IDistributedCache, enabling the functionality to set or get objects of any type using fast MessagePack serializer with LZ4 compression algorithm.</Description>
@@ -16,9 +16,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MessagePack" Version="1.4.0" />
+    <PackageReference Include="MessagePack" Version="1.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,7 @@ namespace Accelist.SDK.CoreMvc.TagHelpers
         public bool AclIf { set; get; }
 
         /// <summary>
-        /// Renders the tag only if the ry-if attribute is set to false.
+        /// Renders the tag only if the acl-if attribute is set to false.
         /// </summary>
         /// <param name="context"></param>
         /// <param name="output"></param>
