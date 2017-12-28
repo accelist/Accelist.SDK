@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Accelist.SDK.CoreMvc.Extensions;
+using Accelist.SDK.CoreMvc.JWT;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 
 namespace Microsoft.AspNetCore.Builder
 {
@@ -24,6 +27,35 @@ namespace Microsoft.AspNetCore.Builder
             {
                 configure.UseMiddleware<ApiExceptionHandlerMiddleware>(debugMode);
             });
+        }
+
+        /// <summary>
+        /// Use plain-text exception handler for web service routes starting with /api, and HTML exception handler for other routes.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="debugMode"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseDualExceptionHandlers(this IApplicationBuilder app, bool debugMode)
+        {
+            app.UseWhen(context => context.IsApiContext(), builder =>
+            {
+                builder.UseApiExceptionHandler(debugMode);
+            });
+
+            app.UseWhen(context => context.IsApiContext() == false, builder =>
+            {
+                if (debugMode)
+                {
+                    builder.UseDeveloperExceptionPage();
+                }
+                else
+                {
+                    builder.UseExceptionHandler("~/error");
+                    builder.UseStatusCodePagesWithReExecute("~/error");
+                }
+            });
+
+            return app;
         }
 
         /// <summary>
@@ -58,6 +90,11 @@ namespace Microsoft.AspNetCore.Builder
                 //Expect CT: https://scotthelme.co.uk/a-new-security-header-expect-ct/
                 await next();
             });
+        }
+
+        public static AuthenticationBuilder AddJWT(this AuthenticationBuilder authenticationBuilder, string authenticationScheme, Action<JoseAuthenticationOptions> configureOptions)
+        {
+            return authenticationBuilder.AddScheme<JoseAuthenticationOptions, JoseAuthenticationHandler>(authenticationScheme, configureOptions);
         }
     }
 }
