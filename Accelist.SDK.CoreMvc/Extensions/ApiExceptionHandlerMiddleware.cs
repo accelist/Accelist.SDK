@@ -24,12 +24,12 @@ namespace Accelist.SDK.CoreMvc.Extensions
         /// Constructs a new ApiExceptionHandlerMiddleware instance.
         /// </summary>
         /// <param name="next"></param>
-        /// <param name="loggerFactory"></param>
+        /// <param name="logger"></param>
         /// <param name="debugMode"></param>
-        public ApiExceptionHandlerMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, bool debugMode)
+        public ApiExceptionHandlerMiddleware(RequestDelegate next, ILogger<ApiExceptionHandlerMiddleware> logger, bool debugMode)
         {
             _next = next;
-            _logger = loggerFactory.CreateLogger<ApiExceptionHandlerMiddleware>();
+            _logger = logger;
             _debugMode = debugMode;
         }
 
