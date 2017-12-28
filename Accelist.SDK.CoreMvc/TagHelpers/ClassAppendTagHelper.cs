@@ -34,7 +34,7 @@ namespace Accelist.SDK.CoreMvc.TagHelpers
                 return this.Class;
             }
 
-            return $"{this.Class} {className}";
+            return this.Class + " " + className;
         }
 
         /// <summary>
