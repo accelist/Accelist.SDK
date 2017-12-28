@@ -9,9 +9,9 @@ using Microsoft.Extensions.Options;
 
 namespace Accelist.SDK.CoreMvc.JWT
 {
-    public class JoseAuthenticationHandler : AuthenticationHandler<JoseAuthenticationOptions>
+    public class JwtAuthenticationHandler : AuthenticationHandler<JwtAuthenticationOptions>
     {
-        public JoseAuthenticationHandler(IOptionsMonitor<JoseAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
+        public JwtAuthenticationHandler(IOptionsMonitor<JwtAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
         {
         }
 
@@ -63,14 +63,14 @@ namespace Accelist.SDK.CoreMvc.JWT
 
         private string TryCaptureTokenFromHeader(IHeaderDictionary headers)
         {
-            if (this.Context.Request.Headers.ContainsKey("jwt"))
+            if (headers.ContainsKey("JWT"))
             {
-                return this.Context.Request.Headers["jwt"][0];
+                return headers["JWT"][0];
             }
 
-            if (this.Context.Request.Headers.ContainsKey("Authorization"))
+            if (headers.ContainsKey("Authorization"))
             {
-                var auth = this.Context.Request.Headers["Authorization"][0].Split(' ');
+                var auth = headers["Authorization"][0].Split(' ');
                 if (auth[0] == "Bearer")
                 {
                     return auth[1];

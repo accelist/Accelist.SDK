@@ -6,7 +6,7 @@ using Jose;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Accelist.SDK.CoreMvc
+namespace Accelist.SDK.CoreMvc.JWT
 {
     public class JoseNewtonsoftMapper : IJsonMapper
     {

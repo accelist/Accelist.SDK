@@ -92,9 +92,10 @@ namespace Microsoft.AspNetCore.Builder
             });
         }
 
-        public static AuthenticationBuilder AddJWT(this AuthenticationBuilder authenticationBuilder, string authenticationScheme, Action<JoseAuthenticationOptions> configureOptions)
+        public static AuthenticationBuilder AddJoseJwt(this AuthenticationBuilder authenticationBuilder, string authenticationScheme, Action<JwtAuthenticationOptions> configureOptions)
         {
-            return authenticationBuilder.AddScheme<JoseAuthenticationOptions, JoseAuthenticationHandler>(authenticationScheme, configureOptions);
+            Jose.JWT.DefaultSettings.JsonMapper = new JoseNewtonsoftMapper();
+            return authenticationBuilder.AddScheme<JwtAuthenticationOptions, JwtAuthenticationHandler>(authenticationScheme, configureOptions);
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Accelist.SDK.CoreMvc.JWT
 {
-    public class JoseAuthenticationOptions : AuthenticationSchemeOptions
+    public class JwtAuthenticationOptions : AuthenticationSchemeOptions
     {
         public string Audience { set; get; }
 
