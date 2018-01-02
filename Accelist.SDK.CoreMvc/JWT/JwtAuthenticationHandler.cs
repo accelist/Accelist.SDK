@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -9,12 +10,27 @@ using Microsoft.Extensions.Options;
 
 namespace Accelist.SDK.CoreMvc.JWT
 {
+    /// <summary>
+    /// Implements ASP.NET Core MVC AuthenticationHandler class for bearer token authentication using JOSE-JWT library.
+    /// </summary>
     public class JwtAuthenticationHandler : AuthenticationHandler<JwtAuthenticationOptions>
     {
+        /// <summary>
+        /// Creates an instance of JwtAuthenticationHandler using injected dependencies by ASP.NET Core MVC authentication scheme adder.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="logger"></param>
+        /// <param name="encoder"></param>
+        /// <param name="clock"></param>
         public JwtAuthenticationHandler(IOptionsMonitor<JwtAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
         {
         }
 
+        /// <summary>
+        /// Attempts to decode a token string using JOSE-JWT library. Returns both claims and error object for successful or failed parse.
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         private (StandardTokenClaims claims, string error) TryParseToken(string token)
         {
             try
@@ -28,6 +44,10 @@ namespace Accelist.SDK.CoreMvc.JWT
             }
         }
 
+        /// <summary>
+        /// Asynchronously handles bearer token authentication.
+        /// </summary>
+        /// <returns></returns>
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             var token = TryCaptureTokenFromHeader(Context.Request.Headers);
@@ -57,10 +77,16 @@ namespace Accelist.SDK.CoreMvc.JWT
                 return AuthenticateResult.Fail("Token has expired.");
             }
 
-            var principal = claims.ToClaimsPrincipal(this.Scheme.Name);
+            var id = claims.ToClaimsIdentity(this.Scheme.Name);
+            var principal = new ClaimsPrincipal(id);
             return AuthenticateResult.Success(new AuthenticationTicket(principal, this.Scheme.Name));
         }
 
+        /// <summary>
+        /// Attempts to extract token string from HTTP header (JWT or Authorization: Bearer).
+        /// </summary>
+        /// <param name="headers"></param>
+        /// <returns></returns>
         private string TryCaptureTokenFromHeader(IHeaderDictionary headers)
         {
             if (headers.ContainsKey("JWT"))

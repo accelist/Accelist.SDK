@@ -92,6 +92,13 @@ namespace Microsoft.AspNetCore.Builder
             });
         }
 
+        /// <summary>
+        /// Adds bearer token authenticatication using JOSE-JWT.
+        /// </summary>
+        /// <param name="authenticationBuilder"></param>
+        /// <param name="authenticationScheme"></param>
+        /// <param name="configureOptions"></param>
+        /// <returns></returns>
         public static AuthenticationBuilder AddJoseJwt(this AuthenticationBuilder authenticationBuilder, string authenticationScheme, Action<JwtAuthenticationOptions> configureOptions)
         {
             Jose.JWT.DefaultSettings.JsonMapper = new JoseNewtonsoftMapper();
