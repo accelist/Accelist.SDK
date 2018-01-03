@@ -13,7 +13,7 @@ namespace Accelist.SDK.CoreMvc.JWT
     /// <summary>
     /// Implements ASP.NET Core MVC AuthenticationHandler class for bearer token authentication using JOSE-JWT library.
     /// </summary>
-    public class JwtAuthenticationHandler : AuthenticationHandler<JwtAuthenticationOptions>
+    public class JwtAuthenticationHandler<T> : AuthenticationHandler<JwtAuthenticationOptions> where T : StandardTokenClaims
     {
         /// <summary>
         /// Creates an instance of JwtAuthenticationHandler using injected dependencies by ASP.NET Core MVC authentication scheme adder.
@@ -31,11 +31,11 @@ namespace Accelist.SDK.CoreMvc.JWT
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        private (StandardTokenClaims claims, string error) TryParseToken(string token)
+        private (T claims, string error) TryParseToken(string token)
         {
             try
             {
-                var claims = Jose.JWT.Decode<StandardTokenClaims>(token, this.Options.SigningKey, this.Options.SigningAlgorithm);
+                var claims = Jose.JWT.Decode<T>(token, this.Options.SigningKey, this.Options.SigningAlgorithm);
                 return (claims, null);
             }
             catch (Exception ex)
@@ -75,6 +75,15 @@ namespace Accelist.SDK.CoreMvc.JWT
             if (Clock.UtcNow > claims.Expiration.AddMinutes(5)) // 5 minutes skew time
             {
                 return AuthenticateResult.Fail("Token has expired.");
+            }
+
+            if (this.Options.CustomValidate != null)
+            {
+                error = this.Options.CustomValidate(claims);
+                if (error != null)
+                {
+                    return AuthenticateResult.Fail(error);
+                }
             }
 
             var id = claims.ToClaimsIdentity(this.Scheme.Name);

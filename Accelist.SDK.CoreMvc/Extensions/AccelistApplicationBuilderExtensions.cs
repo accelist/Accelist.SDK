@@ -93,16 +93,32 @@ namespace Microsoft.AspNetCore.Builder
         }
 
         /// <summary>
-        /// Adds bearer token authenticatication using JOSE-JWT.
+        /// Adds bearer token authenticatication using JOSE-JWT custom claims.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="authenticationBuilder"></param>
+        /// <param name="authenticationScheme"></param>
+        /// <param name="configureOptions"></param>
+        /// <returns></returns>
+        public static AuthenticationBuilder AddJoseJwt<T>(this AuthenticationBuilder authenticationBuilder,
+            string authenticationScheme, Action<JwtAuthenticationOptions> configureOptions)
+            where T : StandardTokenClaims
+        {
+            Jose.JWT.DefaultSettings.JsonMapper = new JoseNewtonsoftMapper();
+            return authenticationBuilder.AddScheme<JwtAuthenticationOptions, JwtAuthenticationHandler<T>>(authenticationScheme, configureOptions);
+        }
+
+        /// <summary>
+        /// Adds bearer token authenticatication using JOSE-JWT standard claims.
         /// </summary>
         /// <param name="authenticationBuilder"></param>
         /// <param name="authenticationScheme"></param>
         /// <param name="configureOptions"></param>
         /// <returns></returns>
-        public static AuthenticationBuilder AddJoseJwt(this AuthenticationBuilder authenticationBuilder, string authenticationScheme, Action<JwtAuthenticationOptions> configureOptions)
+        public static AuthenticationBuilder AddJoseJwt(this AuthenticationBuilder authenticationBuilder,
+            string authenticationScheme, Action<JwtAuthenticationOptions> configureOptions)
         {
-            Jose.JWT.DefaultSettings.JsonMapper = new JoseNewtonsoftMapper();
-            return authenticationBuilder.AddScheme<JwtAuthenticationOptions, JwtAuthenticationHandler>(authenticationScheme, configureOptions);
+            return authenticationBuilder.AddJoseJwt<StandardTokenClaims>(authenticationScheme, configureOptions);
         }
     }
 }

@@ -23,5 +23,10 @@ namespace Accelist.SDK.CoreMvc.JWT
         /// Sets or gets the selected algorithm for generating the token signature.
         /// </summary>
         public JwsAlgorithm SigningAlgorithm { set; get; }
+
+        /// <summary>
+        /// Sets or gets custom validation method for validating token claims.
+        /// </summary>
+        public Func<StandardTokenClaims, string> CustomValidate { set; get; }
     }
 }
