@@ -1,8 +1,8 @@
+> These libraries are deprecated, except for PWDB to be written for ASP.NET Core 3 (Accelist.SecurePasswordValidator). Go write some Blazor project instead!
+
 # Accelist.SDK
 
 > Accelist.SDK is a .NET development framework, designed with simplicity in mind, built to improve the quality of life of ASP.NET Core MVC developers by providing essential classes that are missing from the base framework.
-
-> Formerly known as HttpUtil
 
 [![Build status](https://ci.appveyor.com/api/projects/status/1bjgdjrb2jy1godo/branch/master?svg=true)](https://ci.appveyor.com/project/RyanElian/accelist-sdk/branch/master)
 
